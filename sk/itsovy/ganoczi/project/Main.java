@@ -9,12 +9,21 @@ public class Main {
         System.out.println("Min " + myArray.min());
         System.out.println("Max " + myArray.max());
         myArray.generateValues(10,100);
-        System.out.println(myArray.contains(10));
-        System.out.println("Number 10 in array is: " + myArray.countOfValues(10));
-        System.out.println("Count of even numbers in array: " + myArray.countEvenValues());
+        System.out.println();
+        System.out.println("Is there in array number 10? Answer:"+ myArray.contains(10));
+        System.out.println("Number 10 is in array: " + myArray.countOfValues(10) + " times");
+        System.out.println("Count of even numbers in array: " + myArray.countEvenValues()+ " times");
         myArray.incrementValues();
         System.out.println("Average value of numbers in array: " + myArray.getAverageValue());
         myArray.sort(true);
+        myArray.addItem(14);
+        myArray.addItem(88,8);
+        System.out.println();
+        System.out.print("Second min number from array: ");
+        System.out.print(myArray.min2());
+        System.out.println();
+        System.out.print("Second max number from array: ");;
+        System.out.println(myArray.max2());
 
     }
 
