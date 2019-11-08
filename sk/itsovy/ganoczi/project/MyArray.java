@@ -79,12 +79,9 @@ public class MyArray implements ArrayMethods {
     @Override
     public int min2() {
         int temp;
-        for (int i = 0; i < size; i++)
-        {
-            for (int j = i + 1; j < size; j++)
-            {
-                if (arr[i] > arr[j])
-                {
+        for (int i = 0; i < size; i++) {
+            for (int j = i + 1; j < size; j++) {
+                if (arr[i] > arr[j]) {
                     temp = arr[i];
                     arr[i] = arr[j];
                     arr[j] = temp;
@@ -97,12 +94,9 @@ public class MyArray implements ArrayMethods {
     @Override
     public int max2() {
         int temp;
-        for (int i = 0; i < size; i++)
-        {
-            for (int j = i + 1; j < size; j++)
-            {
-                if (arr[i] < arr[j])
-                {
+        for (int i = 0; i < size; i++) {
+            for (int j = i + 1; j < size; j++) {
+                if (arr[i] < arr[j]) {
                     temp = arr[i];
                     arr[i] = arr[j];
                     arr[j] = temp;
@@ -241,6 +235,58 @@ public class MyArray implements ArrayMethods {
     public int getItem(int position) {
 
         return arr[position];
+    }
+
+
+    public void reverse(){
+
+        for (int i=0; i<size/2;i++){
+            int temp=arr[i];
+            arr[i]=arr[size-1-i];
+            arr[size-1-i]=temp;
+        }
+    }
+    public void printArray() {
+        System.out.println();
+        for (int i=0; i<size; i++){
+            System.out.print(arr[i]+" ");
+        }
+    }
+
+    public void randomize(){
+        Random rnd=new Random();
+        for (int i=0; i<2*size; i++){
+            int index1=rnd.nextInt(size);
+            int index2=rnd.nextInt(size);
+            int temp=arr[index1];
+            arr[index1]=arr[index2];
+            arr[index2]=temp;
+        }
+    }
+
+    public String addBigNumbers(String a, String b) {
+
+        int firstNum = a.length();
+        int secondNum = b.length();
+
+
+
+        if (firstNum < secondNum) {
+            int temp = secondNum - firstNum;
+            for (int i = 0; i < temp; i++) {
+                a += "0";
+            }
+        }
+        if (secondNum < firstNum) {
+            int temp = firstNum - secondNum;
+            for (int i = 0; i < temp; i++) {
+                a += "0";
+            }
+        }
+        return a+ "  "+b;
+
+
+
     }
 }
 

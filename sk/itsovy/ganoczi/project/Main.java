@@ -25,6 +25,16 @@ public class Main {
         System.out.print("Second max number from array: ");;
         System.out.println(myArray.max2());
 
+        //spocitat dve lubovolne dlhe cisla jedno cislo bude string aj druhe string moze byt aj 20 ciferne
+        //Vynasobit dve lubovolne dlhe cisla jedno cislo bude string aj druhe string moze byt aj 20 ciferne
+
+
+        myArray.printArray();
+        myArray.randomize();
+        myArray.printArray();
+
+
+
     }
 
 }
