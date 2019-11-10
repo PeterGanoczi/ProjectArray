@@ -32,6 +32,13 @@ public class Main {
         myArray.printArray();
         myArray.randomize();
         myArray.printArray();
+        System.out.println();
+        System.out.print("Add ");
+        System.out.println(myArray.addBigNumbers("132145","213"));
+
+        System.out.print("Multiply ");
+        System.out.print(myArray.multiplyBigNumbers("1254832","1486419"));
+
 
 
 

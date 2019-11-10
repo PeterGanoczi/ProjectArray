@@ -238,55 +238,108 @@ public class MyArray implements ArrayMethods {
     }
 
 
-    public void reverse(){
+    public void reverse() {
 
-        for (int i=0; i<size/2;i++){
-            int temp=arr[i];
-            arr[i]=arr[size-1-i];
-            arr[size-1-i]=temp;
+        for (int i = 0; i < size / 2; i++) {
+            int temp = arr[i];
+            arr[i] = arr[size - 1 - i];
+            arr[size - 1 - i] = temp;
         }
     }
+
     public void printArray() {
         System.out.println();
-        for (int i=0; i<size; i++){
-            System.out.print(arr[i]+" ");
+        for (int i = 0; i < size; i++) {
+            System.out.print(arr[i] + " ");
         }
     }
 
-    public void randomize(){
-        Random rnd=new Random();
-        for (int i=0; i<2*size; i++){
-            int index1=rnd.nextInt(size);
-            int index2=rnd.nextInt(size);
-            int temp=arr[index1];
-            arr[index1]=arr[index2];
-            arr[index2]=temp;
+    public void randomize() {
+        Random rnd = new Random();
+        for (int i = 0; i < 2 * size; i++) {
+            int index1 = rnd.nextInt(size);
+            int index2 = rnd.nextInt(size);
+            int temp = arr[index1];
+            arr[index1] = arr[index2];
+            arr[index2] = temp;
         }
     }
 
     public String addBigNumbers(String a, String b) {
 
-        int firstNum = a.length();
-        int secondNum = b.length();
+        //revers string
+        String reverse = "";
+        for (int i = a.length(); i > 0; i--) {
+            reverse += a.charAt(i - 1);
+        }
+        a = reverse;
 
+        reverse = "";
+        for (int i = b.length(); i > 0; i--) {
+            reverse += b.charAt(i - 1);
+        }
+        b = reverse;
 
+        //add zeros at the end
+        while (a.length() < b.length()) {
+            a += "0";
+        }
+        while (b.length() < a.length()) {
+            b += "0";
+        }
 
-        if (firstNum < secondNum) {
-            int temp = secondNum - firstNum;
-            for (int i = 0; i < temp; i++) {
-                a += "0";
+        //adding
+        String result="";
+        int remainder = 0;
+        for (int i = 0; i < a.length() || i < b.length(); i++) {
+            int temp = Character.getNumericValue(a.charAt(i)) + Character.getNumericValue(b.charAt(i)) + remainder;
+            remainder = 0;
+            if (temp > 9) {
+                remainder = 1;
+                temp = temp % 10;
+            }
+            result += Integer.toString(temp);
+        }
+
+        reverse = "";
+        for (int i = result.length(); i > 0; i--) {
+            reverse += result.charAt(i - 1);
+        }
+        result = reverse;
+        return result;
+    }
+
+    public String multiplyBigNumbers(String num1, String num2) {
+        String n1 = new StringBuilder(num1).reverse().toString();
+        String n2 = new StringBuilder(num2).reverse().toString();
+
+        int[] d = new int[num1.length()+num2.length()];
+
+        //multiply each digit and sum at the corresponding positions
+        for(int i=0; i<n1.length(); i++){
+            for(int j=0; j<n2.length(); j++){
+                d[i+j] += (n1.charAt(i)-'0') * (n2.charAt(j)-'0');
             }
         }
-        if (secondNum < firstNum) {
-            int temp = firstNum - secondNum;
-            for (int i = 0; i < temp; i++) {
-                a += "0";
+
+        StringBuilder sb = new StringBuilder();
+
+        //calculate each digit
+        for(int i=0; i<d.length; i++){
+            int mod = d[i]%10;
+            int carry = d[i]/10;
+            if(i+1<d.length){
+                d[i+1] += carry;
             }
+            sb.insert(0, mod);
         }
-        return a+ "  "+b;
 
+        //remove front 0's
+        while(sb.charAt(0) == '0' && sb.length()> 1){
+            sb.deleteCharAt(0);
+        }
 
-
+        return sb.toString();
     }
 }
 
